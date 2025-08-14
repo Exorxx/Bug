@@ -1,0 +1,31 @@
+#installBtn {
+  background-color: #ffcc00;
+  border: none;
+  padding: 12px 20px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#installBtn:hover {
+  background-color: #ffaa00;
+}
+
+#bug-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.bug {
+  position: absolute;
+  width: 40px;
+  height: auto;
+  pointer-events: auto; 
+  transition: transform 0.2s linear;
+}
+
+

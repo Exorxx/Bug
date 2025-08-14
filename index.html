@@ -5,13 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Bug Squasher</h1>
+    <button id="installBtn" style="display:none;">Install Game</button>
+
+    <div id="bug-container"></div>
+
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/service-worker.js')
         }
     </script>
+    <script src="install.js"></script>
+    <script src="bugspawner.js"></script>
 </body>
 </html>
