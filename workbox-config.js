@@ -1,11 +1,12 @@
 module.exports = {
-	globDirectory: '.',
+	globDirectory: './',
 	globPatterns: [
 		'**/*.{svg,js,png,jpg,html,json,md,css}'
 	],
 	swDest: 'service-worker.js',
+	cleanupOutdatedCaches: true,
+	navigateFallback: '/index.html',
 	ignoreURLParametersMatching: [
-		/^utm_/,
-		/^fbclid$/
+		/^utm_/, /^home$/
 	]
 };

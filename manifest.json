@@ -30,6 +30,6 @@
     ],
     "theme-color": "#000000",
     "background-color": "#FFFFFF",
-    "display": "fullscreen",
+    "display": "standalone",
     "orientation": "portrait"
 }
