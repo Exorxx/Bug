@@ -1,3 +1,22 @@
+let score = 0;
+let highScore = localStorage.getItem('highScore') || 0;
+document.getElementById('high-score').textContent = highScore;
+
+let timedMode = false;
+let timeLeft = 60;
+let timerInterval = null;
+let spawnInterval = null; // dynamic spawn
+let baseSpawnTime = 500; // starting spawn time in ms
+
+function updateScore() {
+  document.getElementById('score').textContent = score;
+  if (score > highScore) {
+    highScore = score;
+    localStorage.setItem('highScore', highScore);
+    document.getElementById('high-score').textContent = highScore;
+  }
+}
+
 function spawnBug() {
   const bug = document.createElement('img');
   bug.src = '/bugs/bug1.svg';
@@ -16,27 +35,23 @@ function spawnBug() {
   let wiggleTime = 0;
 
   function updateRotation() {
-    // Correct for SVG facing direction
-    const wiggle = Math.sin(wiggleTime) * 0.2; // ±0.2 rad (~11°) wiggle
+    const wiggle = Math.sin(wiggleTime) * 0.2; 
     bug.style.transform = `rotate(${angle + Math.PI / 2 + wiggle}rad)`;
   }
 
-  // Click to smash
   bug.addEventListener('click', () => {
     bug.remove();
-    console.log('Bug smashed!');
+    score++;
+    updateScore();
   });
 
   function moveBug() {
-    // Slight wiggle motion
     wiggleTime += 0.2;
 
-    // Occasionally change direction (about 1% chance each frame)
     if (Math.random() < 0.01) {
-      angle += (Math.random() - 0.5) * Math.PI / 2; // turn up to ±90°
+      angle += (Math.random() - 0.5) * Math.PI / 2;
     }
 
-    // Move forward
     x += Math.cos(angle) * speed;
     y += Math.sin(angle) * speed;
 
@@ -44,7 +59,6 @@ function spawnBug() {
     bug.style.top = y + 'px';
     updateRotation();
 
-    // Remove if off-screen
     if (
       x < -50 || 
       y < -50 || 
@@ -61,10 +75,58 @@ function spawnBug() {
   moveBug();
 }
 
-// Spawn a new bug every 1 seconds
-setInterval(spawnBug, 1000);
+function clearBugs() {
+  document.querySelectorAll('.bug').forEach(bug => bug.remove());
+}
 
-// Start with 5 bugs
+function startNormalMode() {
+  timedMode = false;
+  score = 0;
+  updateScore();
+  document.getElementById('timer').style.display = 'none';
+  clearInterval(timerInterval);
+  clearInterval(spawnInterval);
+}
+
+function startTimedMode() {
+  timedMode = true;
+  score = 0;
+  updateScore();
+  timeLeft = 60;
+  document.getElementById('time-left').textContent = timeLeft;
+  document.getElementById('timer').style.display = 'block';
+
+  // Reset bugs
+  clearBugs();
+  for (let i = 0; i < 5; i++) {
+    spawnBug();
+  }
+
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    document.getElementById('time-left').textContent = timeLeft;
+
+    // progressively increase difficulty
+    let difficultyFactor = Math.max(100, baseSpawnTime - (60 - timeLeft) * 6);
+    clearInterval(spawnInterval);
+    spawnInterval = setInterval(spawnBug, difficultyFactor);
+
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      clearInterval(spawnInterval);
+      alert(`Time's up! You squashed ${score} bugs!`);
+      startNormalMode();
+    }
+  }, 1000);
+}
+
+// Start normal mode bug spawning
+spawnInterval = setInterval(spawnBug, baseSpawnTime);
+
+// Initial 5 bugs
 for (let i = 0; i < 5; i++) {
   spawnBug();
 }
+
+document.getElementById('start-timed').addEventListener('click', startTimedMode);
