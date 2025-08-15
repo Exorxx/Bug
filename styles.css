@@ -1,3 +1,8 @@
+body {
+  touch-action: manipulation;
+  padding: 30px;
+}
+
 #installBtn {
   background-color: #ffcc00;
   border: none;
@@ -24,19 +29,21 @@
   position: absolute;
   width: 40px;
   height: auto;
-  pointer-events: auto; 
+  pointer-events: auto;
   transition: transform 0.2s linear;
 }
 
 #hud {
-  position: fixed;
+  display: flex;
+  flex-direction: column;
   top: 10px;
   left: 10px;
-  font-family: sans-serif;
   font-size: 20px;
   color: rgb(0, 0, 0);
   z-index: 9999;
+  width: 95%;
 }
+
 #hud button {
   margin-top: 5px;
   padding: 4px 8px;
@@ -44,6 +51,5 @@
 }
 
 .gamename {
-  display: flex;
-  justify-content: center;
+  text-align: center;
 }

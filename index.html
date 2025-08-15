@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Document</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <h1 class="gamename">Bug Squasher</h1>
-    <button id="installBtn" style="display:none;">Install Game</button>
 
+<body>
     <div id="hud">
+        <h1 class="gamename">Bug Squasher</h1>
+        <button id="installBtn" style="display:none;">Install Game</button>
         <div>Score: <span id="score">0</span></div>
         <div>High Score: <span id="high-score">0</span></div>
         <div id="timer" style="display:none;">Time: <span id="time-left">60</span>s</div>
@@ -23,16 +24,17 @@
 
     <script>
         if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/service-worker.js').then(registration => {
-            console.log('Service Worker registered with scope:', registration.scope);
-            }).catch(err => {
-            console.log('Service Worker registration failed:', err);
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js').then(registration => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                }).catch(err => {
+                    console.log('Service Worker registration failed:', err);
+                });
             });
-        });
         }
     </script>
     <script src="install.js"></script>
     <script src="bugspawner.js"></script>
 </body>
+
 </html>
