@@ -13,14 +13,15 @@
     <div id="hud">
         <h1 class="gamename">Bug Squasher</h1>
         <button id="installBtn" style="display:none;">Install Game</button>
-        <div>Score: <span id="score">0</span></div>
+        <div id="score-container" style="display:none;">Score : <span id="score">0</span></div>
         <div>High Score: <span id="high-score">0</span></div>
         <div id="timer" style="display:none;">Time: <span id="time-left">60</span>s</div>
-        <button id="start-timed">Start Timed Mode</button>
+
+        <button id="play-btn">Play</button>
+        <button id="info-btn">Info</button>
     </div>
 
     <div id="bug-container"></div>
-
 
     <script>
         if ('serviceWorker' in navigator) {
