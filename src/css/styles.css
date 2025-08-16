@@ -1,6 +1,11 @@
-body {
+body, button, #bug-container, .bug {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   touch-action: manipulation;
   padding: 30px;
+  margin: 0;
 }
 
 #installBtn {
@@ -11,7 +16,6 @@ body {
   border-radius: 8px;
   cursor: pointer;
 }
-
 #installBtn:hover {
   background-color: #ffaa00;
 }
@@ -23,6 +27,7 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
+  z-index: 0;
 }
 
 .bug {
@@ -40,8 +45,9 @@ body {
   left: 10px;
   font-size: 20px;
   color: rgb(0, 0, 0);
-  z-index: 9999;
+  z-index: 1;
   width: 95%;
+  position: relative;
 }
 
 #hud button {
@@ -63,7 +69,7 @@ body {
   color: black;
   padding: 20px;
   border-radius: 10px;
-  z-index: 10000;
+  z-index: 4;
   display: none;
   max-width: 300px;
   text-align: center;
@@ -82,5 +88,5 @@ body {
   height: 100%;
   backdrop-filter: blur(5px);
   background-color: rgba(0, 0, 0, 0.3);
-  z-index: 9999;
+  z-index: 2;
 }

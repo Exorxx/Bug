@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Document</title>
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Bug Squasher</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="src/css/styles.css">
 </head>
-
 <body>
-    <div id="hud">
-        <h1 class="gamename">Bug Squasher</h1>
-        <button id="installBtn" style="display:none;">Install Game</button>
-        <button id="installInstructions" style="display:none;">How to Install?</button>
-        <div id="score-container" style="display:none;">Score : <span id="score">0</span></div>
-        <div>High Score: <span id="high-score">0</span></div>
-        <div id="timer" style="display:none;">Time: <span id="time-left">60</span>s</div>
+  <div id="hud">
+    <h1 class="gamename">Bug Squasher</h1>
+    <button id="installBtn" style="display:none;">Install Game</button>
+    <button id="installInstructions" style="display:none;">How to Install?</button>
 
-        <button id="play-btn">Play</button>
-        <button id="info-btn">Info</button>
-    </div>
+    <div id="score-container" style="display:none;">Score : <span id="score">0</span></div>
+    <div>High Score: <span id="high-score">0</span></div>
+    <div id="timer" style="display:none;">Time: <span id="time-left">60</span>s</div>
 
-    <div id="bug-container"></div>
-    <script src="index.js"></script>
-    <script src="install.js"></script>
-    <script src="bugspawner.js"></script>
+    <button id="play-btn">Play</button>
+    <button id="info-btn">Info</button>
+  </div>
+
+  <div id="bug-container"></div>
+  
+  <script src="index.js"></script>
+  <script src="install.js"></script>
+  <script src="src/js/game.js"></script>
+  <script src="src/js/score.js"></script>
+  <script src="src/js/bugspawner.js"></script>
+  <script src="src/js/ui.js"></script>
 </body>
-
 </html>
