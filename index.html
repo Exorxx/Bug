@@ -13,6 +13,7 @@
     <div id="hud">
         <h1 class="gamename">Bug Squasher</h1>
         <button id="installBtn" style="display:none;">Install Game</button>
+        <button id="installInstructions" style="display:none;">How to Install?</button>
         <div id="score-container" style="display:none;">Score : <span id="score">0</span></div>
         <div>High Score: <span id="high-score">0</span></div>
         <div id="timer" style="display:none;">Time: <span id="time-left">60</span>s</div>
@@ -22,18 +23,7 @@
     </div>
 
     <div id="bug-container"></div>
-
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js').then(registration => {
-                    console.log('Service Worker registered with scope:', registration.scope);
-                }).catch(err => {
-                    console.log('Service Worker registration failed:', err);
-                });
-            });
-        }
-    </script>
+    <script src="index.js"></script>
     <script src="install.js"></script>
     <script src="bugspawner.js"></script>
 </body>
